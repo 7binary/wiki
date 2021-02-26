@@ -1,10 +1,12 @@
-### Package layers
+### Package layers (request up-down, response down-up)
 ***
-+ Application (dev working with) `http ftp ssh smtp`
-+ Transport `TCP/UDP`
-+ Network (Internet) `IP`
-+ Link (wi-fi, ethernet) `hardware level`
-+ Phisical (cables between computers and router) `hardware level`
++ Application `http ftp ssh smtp` developers working with: Header+Body
++ Transport `TCP/UDP` adds Header: source/dest ports, sequence number
++ Network (Internet) `IP` adds Header: source/dest IP-address
++ Data Link `wi-fi, ethernet` adds Header: MAC-address
++ Physical `cables between computers and router` without Header
+
+[<img src="package-layers.png" width="600"/>](package-layers.png)
 
 ### UDP protocol
 ***
@@ -18,3 +20,8 @@
 + Connection-based (3-way handshake)
 + Reliable (delivery ACK, retransmission, in-order packets)
 + Congestion control
+
+### HTTP protocol
+***
++ Header (metadata about body) + Body
++ Based on transport TCP/IP
