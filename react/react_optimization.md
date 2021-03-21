@@ -46,7 +46,7 @@ Immer для редюсеров\
 Reselect для селектеров\
 shallowEqual для useState
 
-> Использовать немутирующие чистые функции (immutable purse functions)
+> Использовать немутирующие чистые функции (immutable pure functions)
 ```
 handleClick() {
   this.setState(state => ({
