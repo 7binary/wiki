@@ -4,8 +4,8 @@ console.log(verify('')); //true
 console.log(verify('<( >)')); //false
 console.log(verify('( [ <> () ] <> )')); //true
 console.log(verify(' (  [)')); //false
-
 // написать функцию, проверяющую правильность закрытия скобок <> () []
+
 function verify(text) {
   const stack = [];
   const brackets = { ')': '(', '>': '<', ']': '[' };

@@ -17,7 +17,7 @@ Chrome «Performance». В режиме разработки вы можете �
 react-window и react-virtualized
 
 > Мемоизация компонентов: Сравнение условия перерисовки\
-shouldComponentUpdate / PureComponent / memo(FC) / useMemo(FC, deps)
+shouldComponentUpdate / PureComponent / memo(FC) / useMemo(FC, deps) / useCallback(fn)
 ```
 import React, { memo } from 'react'; // higher order function
 export default memo(
@@ -59,5 +59,8 @@ function updateColorMap(colormap) {
   return {...colormap, right: 'blue'};
 }
 ```
+
+> Не подгружать лишнего, использовать отложенную загрузку 
+React.Suspense + import.then()
 
 > Через вкладку Network в Chrome проверяем скорость API ответов.
