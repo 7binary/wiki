@@ -7,9 +7,9 @@ console.log('typeof null =>', typeof null); // object (absence of value, mistake
 console.log(`typeof Symbol('any') =>`, typeof Symbol('any')); // symbol (new in ES6 for object properties)
 
 // NON PRIMITIVE TYPES
-console.log('typeof {} =>', typeof {}); // (object -> Object)
-console.log('typeof [] =>', typeof []); // object (Array -> Object)
-console.log('typeof function() {} =>', typeof function() {}); // function -(Function -> Object)
+console.log('typeof {} =>', typeof {}); // object (Object)
+console.log('typeof [] =>', typeof []); // object, (Array -> Object), check with Array.isArray(arr)
+console.log('typeof function() {} =>', typeof function() {}); // function (Function -> Object)
 
 // TYPESCRIPT TYPES
 /*
