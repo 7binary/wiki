@@ -35,3 +35,4 @@ console.log(
   'true.toString() === Boolean(true).toString() =>',
   true.toString() === Boolean(true).toString(),
 );
+

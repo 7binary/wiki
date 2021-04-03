@@ -1,0 +1,3 @@
+- `CloudFormation` - manage resources of clouds. Stack > *pick* > Resources
+- `CloudWatch` - watch logs of req/res. Logs > Log groups
+- `EventBridge` - watch schedule/cron tasks. Rules > Targets > *pick*
