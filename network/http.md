@@ -117,3 +117,14 @@ HTTP не имеет состояния: не существует связи м
 сессии с сохранением состояния. Используя расширяемость заголовков,
 куки добавляются к рабочему потоку, позволяя сессии на каждом
 HTTP-запросе делиться некоторым контекстом, или состоянием.
+
+### HTTP-2
+- Create a negotiation mechanism that allows clients and servers to elect to use HTTP/1.1, 2.0, or
+potentially other non-HTTP protocols.
+- Maintain high-level compatibility with HTTP/1.1 (for example with methods, status codes, URIs, and most header fields).
+- Decrease latency to improve page load speed in web browsers by considering:
+data compression of HTTP headers
+- HTTP/2 Server Push
+- pipelining of requests
+- fixing the head-of-line blocking problem in HTTP 1.x
+- multiplexing multiple requests over a single TCP connection
