@@ -4,7 +4,11 @@ jobs:
   check-bats-version:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - name: This step checks out a copy of your repository.
+        uses: actions/checkout@v2
+      - name: This step references the directory that contains the action.
+        uses: ./.github/actions/hello-world-action
+      - name: Setup node 10
+        uses: actions/setup-node@v1
       - run: npm install -g bats
       - run: bats -v
