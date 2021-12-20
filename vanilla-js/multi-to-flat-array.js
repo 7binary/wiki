@@ -1,22 +1,15 @@
 const multiArray = [1, [2, 3, [4, 5]], [6, 7]]; // convert to [1,2,3,4,5,6,7]
 
 function flatArr(deepArray) {
-  if (!Array.isArray(deepArray)) {
-    return [];
-  }
-  const singleArr = [];
+  let singleArr = [];
 
-  function run(arr) {
-    for (let i = 0; i < arr.length; i++) {
-      if (typeof arr[i] === 'number') {
-        singleArr.push(arr[i]);
-      } else if (Array.isArray(arr[i])) {
-        run(arr[i]);
-      }
+  for (let i = 0; i < deepArray.length; i++) {
+    if (Array.isArray(deepArray[i])) {
+      singleArr = singleArr.concat(flatArr(deepArray[i]));
+    } else {
+      singleArr.push(deepArray[i]);
     }
   }
-
-  run(deepArray);
 
   return singleArr;
 }

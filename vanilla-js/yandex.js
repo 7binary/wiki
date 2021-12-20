@@ -34,23 +34,22 @@ function logMono(arr) {
 }
 
 function isMono(arr) {
-  if (!Array.isArray(arr) || arr.length < 2) {
-    throw new Error();
-  }
-  let hasUp, hasDown = null;
+  let isUp = undefined;
+  let isMono = true;
 
   for (let i = 1; i < arr.length; i++) {
-    if (arr[i] > arr[i - 1]) {
-      if (hasDown) return false;
-      hasUp = true;
+    const prev = arr[i - 1];
+    const curr = arr[i];
+    if (isUp === undefined && prev !== curr) {
+      isUp = prev < curr;
     }
-    if (arr[i] < arr[i - 1]) {
-      if (hasUp) return false;
-      hasDown = true;
+    if ((isUp === true && curr < prev) || (isUp === false && curr > prev)) {
+      isMono = false;
+      break;
     }
   }
 
-  return true;
+  return isMono;
 }
 
 console.log('********************************');
@@ -65,37 +64,41 @@ compress([1, 4, 3, 2]); // '1-4'
 compress([1, 4]); // '1,4'
 
 function compress(list) {
-  // your code here
-  list.sort((a, b) => a - b);
+  const sorted = new Float64Array(list).sort();
   const ranges = [];
-  let range = [list[0]];
-  for (let i = 1; i < list.length; i++) {
-    if ((list[i] - list[i - 1]) === 1) {
-      range.push(list[i]);
+  let rangeStart = null;
+
+  for (let i = 0; i < sorted.length; i++) {
+    if (rangeStart === null) {
+      rangeStart = sorted[i];
+    }
+    if (sorted[i] === sorted[i + 1] || sorted[i + 1] - sorted[i] === 1) {
+      continue;
     } else {
-      ranges.push(range);
-      range = [list[i]];
+      ranges.push(rangeStart === sorted[i] ? rangeStart : rangeStart + '-' + sorted[i]);
+      rangeStart = null;
     }
   }
-  ranges.push(range);
 
-  const result = ranges.map(range => {
-    if (range.length === 1) return `${range[0]}`;
-    return `${range[0]}-${range[range.length - 1]}`;
-  }).join(',');
-  console.log(result, ranges);
+  // console.log(JSON.stringify(list), '=>', JSON.stringify(ranges.join(',')));
+  return ranges.join(',');
 }
 
 console.log('********************************');
 // определить очередность вывода консольки
 
-console.log('apple');
-setTimeout(() => console.log('pear'), 0);
-Promise.resolve('melon').then(res => console.log(res));
+console.log('apple'); // 1
+
+setImmediate(() => console.log('strawberry')); // 3
+setTimeout(() => console.log('pear'), 0); // 3
+
+Promise.resolve('melon').then(res => console.log(res)); // 2
+
 new Promise((resolve, reject) => {
-  console.log('orange');
+  console.log('orange'); // 1
   resolve('pineapple');
-}).then(res => console.log(res));
-console.log('lime');
+}).then(res => console.log(res)); // 2
+
+console.log('lime'); // 1
 
 // apple orange lime melon pineapple pear
